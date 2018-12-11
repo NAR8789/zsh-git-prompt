@@ -51,21 +51,6 @@ git_super_status() {
 
     if [ -n "$__CURRENT_GIT_STATUS" ]; then
         local GIT_CLEAN=1
-        if [ "$GIT_STAGED" -ne "0" ]; then
-            GIT_CLEAN=0
-        fi
-        if [ "$GIT_CONFLICTS" -ne "0" ]; then
-            GIT_CLEAN=0
-        fi
-        if [ "$GIT_CHANGED" -ne "0" ]; then
-            GIT_CLEAN=0
-        fi
-        if [ "$GIT_UNTRACKED" -ne "0" ]; then
-            GIT_CLEAN=0
-        fi
-        if [ "$GIT_STASHED" -ne "0" ]; then
-            GIT_CLEAN=0
-        fi
 
         local branch="$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH%{${reset_color}%}"
 
@@ -103,18 +88,23 @@ git_super_status() {
 
         if [ "$GIT_STAGED" -ne "0" ]; then
             local staged="$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
+            GIT_CLEAN=0
         fi
         if [ "$GIT_CONFLICTS" -ne "0" ]; then
             local conflicts="$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
+            GIT_CLEAN=0
         fi
         if [ "$GIT_CHANGED" -ne "0" ]; then
             local changed="$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
+            GIT_CLEAN=0
         fi
         if [ "$GIT_UNTRACKED" -ne "0" ]; then
             local untracked="$ZSH_THEME_GIT_PROMPT_UNTRACKED$GIT_UNTRACKED%{${reset_color}%}"
+            GIT_CLEAN=0
         fi
         if [ "$GIT_STASHED" -ne "0" ]; then
             local stashed="$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
+            GIT_CLEAN=0
         fi
         if [ "$GIT_CLEAN" -eq "1" ]; then
             local clean="$ZSH_THEME_GIT_PROMPT_CLEAN%{${reset_color}%}"
