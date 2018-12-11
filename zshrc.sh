@@ -150,6 +150,6 @@ ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT=" {%{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_UPSTREAM_END="%{${reset_color}%}}"
 ZSH_THEME_GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}|MERGING%{${reset_color}%}"
 ZSH_THEME_GIT_PROMPT_REBASE="%{$fg_bold[magenta]%}|REBASE%{${reset_color}%} "
-ZSH_THEME_GIT_PROMPT=${ZSH_THEME_GIT_PROMPT:-'$ZSH_THEME_GIT_PROMPT_PREFIX$branch$merge_or_rebase$upstream${${:-$behind$ahead}:+ }$behind$ahead$ZSH_THEME_GIT_PROMPT_SEPARATOR$staged$conflicts$changed$untracked$stashed$clean$ZSH_THEME_GIT_PROMPT_SUFFIX'}
+ZSH_THEME_GIT_PROMPT='$ZSH_THEME_GIT_PROMPT_PREFIX$branch$merge_or_rebase$upstream${${:-$behind$ahead}:+ }$behind$ahead$ZSH_THEME_GIT_PROMPT_SEPARATOR$staged$conflicts$changed$untracked$stashed$clean$ZSH_THEME_GIT_PROMPT_SUFFIX'
 
 # vim: set filetype=zsh:
