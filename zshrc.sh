@@ -50,17 +50,35 @@ git_super_status() {
     precmd_update_git_vars
 
     if [ -n "$__CURRENT_GIT_STATUS" ]; then
-        local STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH%{${reset_color}%}"
         local clean=1
-
-        if [ -n "$GIT_REBASE" ] && [ "$GIT_REBASE" != "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_REBASE$GIT_REBASE%{${reset_color}%}"
-        elif [ "$GIT_MERGING" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_MERGING%{${reset_color}%}"
+        if [ "$GIT_STAGED" -ne "0" ]; then
+            clean=0
+        fi
+        if [ "$GIT_CONFLICTS" -ne "0" ]; then
+            clean=0
+        fi
+        if [ "$GIT_CHANGED" -ne "0" ]; then
+            clean=0
+        fi
+        if [ "$GIT_UNTRACKED" -ne "0" ]; then
+            clean=0
+        fi
+        if [ "$GIT_STASHED" -ne "0" ]; then
+            clean=0
         fi
 
+        local BRANCH="$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH%{${reset_color}%}"
+
+        local MERGING_OR_REBASE=''
+        if [ -n "$GIT_REBASE" ] && [ "$GIT_REBASE" != "0" ]; then
+            MERGING_OR_REBASE="$ZSH_THEME_GIT_PROMPT_REBASE$GIT_REBASE%{${reset_color}%}"
+        elif [ "$GIT_MERGING" -ne "0" ]; then
+            MERGING_OR_REBASE="$ZSH_THEME_GIT_PROMPT_MERGING%{${reset_color}%}"
+        fi
+
+        local UPSTREAM=''
         if [ "$GIT_LOCAL_ONLY" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_LOCAL%{${reset_color}%}"
+            UPSTREAM="$ZSH_THEME_GIT_PROMPT_LOCAL%{${reset_color}%}"
         elif [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -gt "0" ] && [ -n "$GIT_UPSTREAM" ] && [ "$GIT_UPSTREAM" != ".." ]; then
             if [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -eq "2" ] ; then
                 local git_short_upstream="${GIT_UPSTREAM%%"/$GIT_BRANCH"}"
@@ -71,46 +89,48 @@ git_super_status() {
                     GIT_UPSTREAM="$git_short_upstream"
                 fi
             fi
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT$GIT_UPSTREAM$ZSH_THEME_GIT_PROMPT_UPSTREAM_END%{${reset_color}%}"
+            UPSTREAM="$ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT$GIT_UPSTREAM$ZSH_THEME_GIT_PROMPT_UPSTREAM_END%{${reset_color}%}"
         fi
 
-        if [ "$GIT_BEHIND" -ne "0" ] || [ "$GIT_AHEAD" -ne "0" ]; then
-            STATUS="$STATUS "
-        fi
+
+        # if [ "$GIT_BEHIND" -ne "0" ] || [ "$GIT_AHEAD" -ne "0" ]; then
+        #     STATUS="$STATUS "
+        # fi
+        local BEHIND=''
         if [ "$GIT_BEHIND" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_BEHIND$GIT_BEHIND%{${reset_color}%}"
+            local BEHIND="$ZSH_THEME_GIT_PROMPT_BEHIND$GIT_BEHIND%{${reset_color}%}"
         fi
+        local AHEAD=''
         if [ "$GIT_AHEAD" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
+            local AHEAD="$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
         fi
 
-        STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
-
+        local STAGED=''
         if [ "$GIT_STAGED" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
-            clean=0
+            STAGED="$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
         fi
+        local CONFLICTS=''
         if [ "$GIT_CONFLICTS" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
-            clean=0
+            CONFLICTS="$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
         fi
+        local CHANGED=''
         if [ "$GIT_CHANGED" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
-            clean=0
+            CHANGED="$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
         fi
+        local UNTRACKED=''
         if [ "$GIT_UNTRACKED" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED$GIT_UNTRACKED%{${reset_color}%}"
-            clean=0
+            UNTRACKED="$ZSH_THEME_GIT_PROMPT_UNTRACKED$GIT_UNTRACKED%{${reset_color}%}"
         fi
+        local STASHED=''
         if [ "$GIT_STASHED" -ne "0" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
-            clean=0
+            STASHED="$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
         fi
+        local CLEAN=''
         if [ "$clean" -eq "1" ]; then
-            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN%{${reset_color}%}"
+            CLEAN="$ZSH_THEME_GIT_PROMPT_CLEAN%{${reset_color}%}"
         fi
 
-        echo "%{${reset_color}%}$STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX%{${reset_color}%}"
+        print -P "%{${reset_color}%}$ZSH_THEME_GIT_PROMPT%{${reset_color}%}"
     fi
 }
 
@@ -154,5 +174,6 @@ ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT=" {%{$fg[blue]%}"
 ZSH_THEME_GIT_PROMPT_UPSTREAM_END="%{${reset_color}%}}"
 ZSH_THEME_GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}|MERGING%{${reset_color}%}"
 ZSH_THEME_GIT_PROMPT_REBASE="%{$fg_bold[magenta]%}|REBASE%{${reset_color}%} "
+ZSH_THEME_GIT_PROMPT=${ZSH_THEME_GIT_PROMPT:-'$ZSH_THEME_GIT_PROMPT_PREFIX$BRANCH$MERGING_OR_REBASE$UPSTREAM$BEHIND$AHEAD$ZSH_THEME_GIT_PROMPT_SEPARATOR$STAGED$CONFLICTS$CHANGED$UNTRACKED$STASHED$CLEAN$ZSH_THEME_GIT_PROMPT_SUFFIX'}
 
 # vim: set filetype=zsh:
