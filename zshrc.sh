@@ -106,7 +106,7 @@ git_super_status() {
             local clean="$ZSH_THEME_GIT_PROMPT_CLEAN%{${reset_color}%}"
         fi
 
-        print -P "%{${reset_color}%}$ZSH_THEME_GIT_PROMPT%{${reset_color}%}"
+        echo "%{${reset_color}%}${(e)ZSH_THEME_GIT_PROMPT}%{${reset_color}%}"
     fi
 }
 
