@@ -37,6 +37,7 @@ addons:
   apt:
     packages:
       - libgmp-dev
+      - zsh
 
 # Download and unpack the stack executable for haskell, else pip deps.
 install:
