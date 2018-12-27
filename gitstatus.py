@@ -205,8 +205,8 @@ def current_git_status(lines):
     merge = int(os.path.isfile(merge_file))
     rebase = rebase_progress(rebase_dir)
 
-    values = [str(x) for x in (branch,) + remote + stats +
-              (stashes, local, upstream, merge, rebase)]
+    values = [str(x) for x in (branch,) + remote + stats
+              + (stashes, local, upstream, merge, rebase)]
 
     return ' '.join(values)
 
