@@ -57,6 +57,7 @@ script:
     else
       stack $ARGS --no-terminal --install-ghc test --haddock;
     fi
+  - ./test/test_gitstatus.zsh
 
 # Caching so the next build will be fast too.
 cache:
