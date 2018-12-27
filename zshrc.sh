@@ -64,7 +64,9 @@ git_super_status() {
         elif [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -gt "0" ] && [ -n "$GIT_UPSTREAM" ] && [ "$GIT_UPSTREAM" != ".." ]; then
             if [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -eq "2" ] ; then
               local git_short_upstream="${GIT_UPSTREAM%%"/$GIT_BRANCH"}"
-              local short_parts=( "${(s:/:)git_short_upstream}" )
+              local short_parts  # some versions of zsh (e.g. 5.0.2) can't handle array assignment on the same line as `local`
+              short_parts=( "${(s:/:)git_short_upstream}" )
+
               if [ "$#short_parts" -eq '1' ] ;  then
                 GIT_UPSTREAM="$git_short_upstream"
               fi
