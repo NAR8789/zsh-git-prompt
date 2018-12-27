@@ -63,7 +63,8 @@ git_super_status() {
             STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_LOCAL%{${reset_color}%}"
         elif [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -gt "0" ] && [ -n "$GIT_UPSTREAM" ] && [ "$GIT_UPSTREAM" != ".." ]; then
             local git_short_upstream=${GIT_UPSTREAM%%"/$GIT_BRANCH"}
-            if [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -eq "2" ] ; then
+            local short_parts=(${(s:/:)git_short_upstream})
+            if [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -eq "2" ] && [ $#short_parts -eq '1' ] ; then
               GIT_UPSTREAM=$git_short_upstream
             fi
             STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT$GIT_UPSTREAM$ZSH_THEME_GIT_PROMPT_UPSTREAM_END%{${reset_color}%}"
