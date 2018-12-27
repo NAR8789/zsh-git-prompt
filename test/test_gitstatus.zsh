@@ -1,6 +1,8 @@
 #!/bin/zsh -y
 
-. ./zshrc.sh
+# NOTE: this currently expects to be run from the root of the repo
+
+source zshrc.sh
 
 test_show_upstream_unset() {
   unset ZSH_GIT_PROMPT_SHOW_UPSTREAM
@@ -111,4 +113,4 @@ update_current_git_vars() {
 }
 
 SHUNIT_PARENT="$0"
-. ./test/shunit2/shunit2
+source test/shunit2/shunit2
