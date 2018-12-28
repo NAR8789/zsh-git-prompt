@@ -1,6 +1,7 @@
 preview_git_super_status() {
   (
-    source "${0:a:h}/test/helpers/preview_git_status.zsh"
+    source "$__GIT_PROMPT_DIR/test/helpers/preview_git_status.zsh"
+
     clean_env() {
       clean_git_vars
       unset ZSH_GIT_PROMPT_SHOW_UPSTREAM
