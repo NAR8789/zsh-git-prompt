@@ -1,13 +1,5 @@
 #!/bin/zsh -y
 
-test_show_upstream_unset() {
-  unset ZSH_GIT_PROMPT_SHOW_UPSTREAM
-  GIT_BRANCH=master
-  GIT_UPSTREAM=origin/master
-
-  assertGitPromptEquals '[00m[[01;35mmaster[00m|[01;32m✔[00m][00m'
-}
-
 test_show_upstream_0() {
   ZSH_GIT_PROMPT_SHOW_UPSTREAM=0
   GIT_BRANCH=master
