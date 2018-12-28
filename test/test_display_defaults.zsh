@@ -78,9 +78,8 @@ test_rebasing_all_metrics() {
   GIT_CHANGED=5
   GIT_UNTRACKED=6
   GIT_STASHED=7
-  GIT_LOCAL_ONLY=1
 
-  assertGitPromptEquals '[00m[[01;35m:abc1234[00m[01;35m|REBASE[00m 2/7[00m L[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
+  assertGitPromptEquals '[00m[[01;35m:abc1234[00m[01;35m|REBASE[00m 2/7[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
 }
 
 SHUNIT_PARENT="$0"

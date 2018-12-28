@@ -67,7 +67,6 @@ preview_git_super_status() {
     GIT_CHANGED=5
     GIT_UNTRACKED=6
     GIT_STASHED=7
-    GIT_LOCAL_ONLY=1
     show_git_prompt "rebasing, with metrics:\t\t"
 
     clean_env
