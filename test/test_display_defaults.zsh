@@ -1,5 +1,9 @@
 #!/bin/zsh -y
 
+setUp() {
+  clean_git_vars
+}
+
 test_clean() {
   assertGitPromptEquals '[00m[[01;35mmaster[00m|[01;32m✔[00m][00m'
 }

@@ -9,7 +9,7 @@ assertGitPromptEquals() {
   assertEquals "$@" "$(print -P $(git_super_status))"
 }
 
-setUp() {
+clean_git_vars() {
   # set some default "sane" values here so in indiviudal tests so we can just set the ones we care about
   GIT_BRANCH=master
   GIT_AHEAD=0
@@ -23,8 +23,6 @@ setUp() {
   GIT_UPSTREAM=origin/master
   GIT_MERGING=0
   GIT_REBASE=0
-
-  unset ZSH_GIT_PROMPT_SHOW_UPSTREAM
 }
 
 # mock: avoid running gitstatus.py, and just update __CURRENT_GIT_STATUS to match the various individual status vars

@@ -1,5 +1,9 @@
 #!/bin/zsh -y
 
+setUp() {
+  clean_git_vars
+}
+
 test_show_upstream_0() {
   ZSH_GIT_PROMPT_SHOW_UPSTREAM=0
   GIT_BRANCH=master
