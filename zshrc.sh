@@ -63,13 +63,13 @@ git_super_status() {
             STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_LOCAL%{${reset_color}%}"
         elif [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -gt "0" ] && [ -n "$GIT_UPSTREAM" ] && [ "$GIT_UPSTREAM" != ".." ]; then
             if [ "$ZSH_GIT_PROMPT_SHOW_UPSTREAM" -eq "2" ] ; then
-              local git_short_upstream="${GIT_UPSTREAM%%"/$GIT_BRANCH"}"
-              local git_short_upstream_parts  # some versions of zsh (e.g. 5.0.2) can't handle array assignment on the same line as `local`
-              git_short_upstream_parts=( "${(s:/:)git_short_upstream}" )
+                local git_short_upstream="${GIT_UPSTREAM%%"/$GIT_BRANCH"}"
+                local git_short_upstream_parts  # some versions of zsh (e.g. 5.0.2) can't handle array assignment on the same line as `local`
+                git_short_upstream_parts=( "${(s:/:)git_short_upstream}" )
 
-              if [ "$#git_short_upstream_parts" -eq '1' ] ;  then
-                GIT_UPSTREAM="$git_short_upstream"
-              fi
+                if [ "$#git_short_upstream_parts" -eq '1' ] ;  then
+                    GIT_UPSTREAM="$git_short_upstream"
+                fi
             fi
             STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UPSTREAM_FRONT$GIT_UPSTREAM$ZSH_THEME_GIT_PROMPT_UPSTREAM_END%{${reset_color}%}"
         fi
