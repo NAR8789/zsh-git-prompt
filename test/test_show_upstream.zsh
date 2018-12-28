@@ -68,4 +68,5 @@ test_show_upstream_2_slashy_branch_name_suffix_of_upstream() {
   assertGitPromptEquals '[00m[[01;35mfoo[00m {[34morigin/feature/foo[00m}[00m|[01;32m✔[00m][00m'
 }
 
+SHUNIT_PARENT="$0"
 source test/common.zsh
