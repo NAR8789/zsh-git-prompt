@@ -23,8 +23,6 @@ preview_git_super_status() {
     show_git_prompt "local only:\t\t\t"
 
     clean_git_vars
-    GIT_AHEAD=1
-    GIT_BEHIND=2
     GIT_STAGED=3
     GIT_CHANGED=5
     GIT_UNTRACKED=6
@@ -39,8 +37,6 @@ preview_git_super_status() {
 
     clean_git_vars
     GIT_MERGING=1
-    GIT_AHEAD=1
-    GIT_BEHIND=2
     GIT_STAGED=3
     GIT_CONFLICTS=4
     GIT_CHANGED=5

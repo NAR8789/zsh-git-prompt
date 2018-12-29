@@ -7,9 +7,9 @@ test_default_theme() {
 	clean:				[00m[[01;35mmaster[00m|[01;32m✔[00m][00m
 	basic metrics:			[00m[[01;35mmaster[00m ↓·2[00m↑·1[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
 	local only:			[00m[[01;35mmaster[00m L[00m|[01;32m✔[00m][00m
-	local only, with metrics:	[00m[[01;35mmaster[00m L[00m ↓·2[00m↑·1[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
+	local only, with metrics:	[00m[[01;35mmaster[00m L[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
 	merging:			[00m[[01;35mmaster[00m[01;35m|MERGING[00m[00m|[31m✖1[00m][00m
-	merging, with metrics:		[00m[[01;35mmaster[00m[01;35m|MERGING[00m[00m L[00m ↓·2[00m↑·1[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
+	merging, with metrics:		[00m[[01;35mmaster[00m[01;35m|MERGING[00m[00m L[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
 	rebasing:			[00m[[01;35m:abc1234[00m[01;35m|REBASE[00m 3/10[00m|[01;32m✔[00m][00m
 	rebasing, with metrics:		[00m[[01;35m:abc1234[00m[01;35m|REBASE[00m 2/7[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m
 	EXPECTED_PREVIEW
@@ -31,9 +31,9 @@ test_retheme() {
 	clean:				[00m([01;35mmaster[00m|[01;34morigin[00m[00m|[01;32m✔[00m)[00m
 	basic metrics:			[00m([01;35mmaster[00m|[01;34morigin[00m[00m|↓2[00m↑1[00m[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
 	local only:			[00m([01;35mmaster[00m|L[00m|[01;32m✔[00m)[00m
-	local only, with metrics:	[00m([01;35mmaster[00m|L[00m|↓2[00m↑1[00m[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
+	local only, with metrics:	[00m([01;35mmaster[00m|L[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
 	merging:			[00m([01;35mmaster[00m|[01;34morigin[00m[00m|[01;33mMERGE[00m|[31m✖1[00m)[00m
-	merging, with metrics:		[00m([01;35mmaster[00m|L[00m|[01;33mMERGE[00m|↓2[00m↑1[00m[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
+	merging, with metrics:		[00m([01;35mmaster[00m|L[00m|[01;33mMERGE[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
 	rebasing:			[00m([01;35m:abc1234[00m|[01;34morigin/master[00m[00m|[01;33mREBASE 3/10[00m|[01;32m✔[00m)[00m
 	rebasing, with metrics:		[00m([01;35m:abc1234[00m|[01;34morigin/master[00m[00m|[01;33mREBASE 2/7[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m)[00m
 	EXPECTED_PREVIEW

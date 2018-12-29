@@ -28,15 +28,13 @@ test_local_only() {
 }
 
 test_local_only_all_metrics() {
-  GIT_AHEAD=1
-  GIT_BEHIND=2
   GIT_STAGED=3
   GIT_CHANGED=5
   GIT_UNTRACKED=6
   GIT_STASHED=7
   GIT_LOCAL_ONLY=1
 
-  assertGitPromptEquals '[00m[[01;35mmaster[00m L[00m ↓·2[00m↑·1[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
+  assertGitPromptEquals '[00m[[01;35mmaster[00m L[00m|[31m●3[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
 }
 
 test_merging() {
@@ -49,8 +47,6 @@ test_merging() {
 test_merging_all_metrics() {
   GIT_MERGING=1
 
-  GIT_AHEAD=1
-  GIT_BEHIND=2
   GIT_STAGED=3
   GIT_CONFLICTS=4
   GIT_CHANGED=5
@@ -58,7 +54,7 @@ test_merging_all_metrics() {
   GIT_STASHED=7
   GIT_LOCAL_ONLY=1
 
-  assertGitPromptEquals '[00m[[01;35mmaster[00m[01;35m|MERGING[00m[00m L[00m ↓·2[00m↑·1[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
+  assertGitPromptEquals '[00m[[01;35mmaster[00m[01;35m|MERGING[00m[00m L[00m|[31m●3[00m[31m✖4[00m[34m✚5[00m[36m…6[00m[01;34m⚑7[00m][00m'
 }
 
 test_rebasing() {
